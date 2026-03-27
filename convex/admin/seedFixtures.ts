@@ -28,6 +28,11 @@ export type SeedOperatorConfig = {
   name: string;
   email: string;
   contactPhone: string;
+  physicalAddress: string;
+  city: string;
+  locationLabel: string;
+  latitude: number;
+  longitude: number;
   licenseType: string;
   licenseStatus: "ACTIVE" | "UNDER_REVIEW" | "SUSPENDED" | "EXPIRED";
   expiryDate: number;
@@ -121,6 +126,11 @@ export const SEED_OPERATOR_CONFIGS: SeedOperatorConfig[] = [
     name: "BTC",
     email: "consumer.support@btc.bw",
     contactPhone: "+267 395 8000",
+    physicalAddress: "Khama Crescent, Plot 50350, Megaleng, Gaborone, Botswana",
+    city: "Gaborone",
+    locationLabel: "Megaleng House, Khama Crescent",
+    latitude: -24.6506,
+    longitude: 25.9116,
     licenseType: "Public Telecommunications Operator (PTO)",
     licenseStatus: "ACTIVE",
     expiryDate: Date.UTC(2028, 11, 31),
@@ -159,6 +169,11 @@ export const SEED_OPERATOR_CONFIGS: SeedOperatorConfig[] = [
     name: "Mascom Botswana",
     email: "customer.care@mascom.bw",
     contactPhone: "+267 71 000 000",
+    physicalAddress: "Tsholetsa House, Plot 4705/6, Botswana Road Main Mall, Gaborone, Botswana",
+    city: "Gaborone",
+    locationLabel: "Tsholetsa House, Main Mall",
+    latitude: -24.6584,
+    longitude: 25.9088,
     licenseType: "Public Telecommunications Operator (PTO)",
     licenseStatus: "ACTIVE",
     expiryDate: Date.UTC(2028, 11, 31),
@@ -197,6 +212,11 @@ export const SEED_OPERATOR_CONFIGS: SeedOperatorConfig[] = [
     name: "Orange Botswana",
     email: "customer.service@orange.co.bw",
     contactPhone: "+267 72 000 000",
+    physicalAddress: "Head Office CBD, Gaborone, Botswana",
+    city: "Gaborone",
+    locationLabel: "Orange Head Office CBD",
+    latitude: -24.6548,
+    longitude: 25.9115,
     licenseType: "Public Telecommunications Operator (PTO)",
     licenseStatus: "ACTIVE",
     expiryDate: Date.UTC(2028, 11, 31),
@@ -235,6 +255,11 @@ export const SEED_OPERATOR_CONFIGS: SeedOperatorConfig[] = [
     name: "Nashua Botswana",
     email: "info@nashua.co.bw",
     contactPhone: "+267 390 7700",
+    physicalAddress: "Plot 1266, Luthuli Rd, Madirelo Ext 6, Gaborone, Botswana",
+    city: "Gaborone",
+    locationLabel: "Madirelo Ext 6, Luthuli Road",
+    latitude: -24.6769,
+    longitude: 25.8858,
     licenseType: "Services and Applications Provider (SAP)",
     licenseStatus: "ACTIVE",
     expiryDate: Date.UTC(2028, 11, 31),

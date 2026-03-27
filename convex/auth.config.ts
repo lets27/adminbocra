@@ -4,11 +4,13 @@ if (!clerkIssuerDomain) {
   throw new Error("Missing CLERK_JWT_ISSUER_DOMAIN.");
 }
 
-export default {
+const authConfig = {
   providers: [
     {
-      domain: process.env.CLERK_FRONTEND_API_URL,
+      domain: clerkIssuerDomain,
       applicationID: "convex",
     },
   ],
 };
+
+export default authConfig;
