@@ -60,7 +60,7 @@ export function RegulatoryActionComposer({
           return;
         }
 
-        setFeedback(result.reason);
+        setFeedback(result.reason ?? "Unable to record the regulatory action.");
       });
     });
   };

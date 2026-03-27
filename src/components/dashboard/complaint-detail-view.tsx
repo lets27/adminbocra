@@ -41,7 +41,11 @@ export function ComplaintDetailView({ complaintId }: { complaintId: string }) {
   const handleStartInvestigation = () => {
     startTransition(() => {
       void startInvestigation({ complaintId: convexComplaintId }).then((result) => {
-        setFeedback(result.ok ? "Investigation started." : result.reason);
+        setFeedback(
+          result.ok
+            ? "Investigation started."
+            : result.reason ?? "Unable to start the investigation.",
+        );
       });
     });
   };
@@ -49,7 +53,11 @@ export function ComplaintDetailView({ complaintId }: { complaintId: string }) {
   const handleCloseComplaint = () => {
     startTransition(() => {
       void closeComplaint({ complaintId: convexComplaintId }).then((result) => {
-        setFeedback(result.ok ? "Complaint closed." : result.reason);
+        setFeedback(
+          result.ok
+            ? "Complaint closed."
+            : result.reason ?? "Unable to close the complaint.",
+        );
       });
     });
   };
@@ -65,7 +73,11 @@ export function ComplaintDetailView({ complaintId }: { complaintId: string }) {
         complaintId: convexComplaintId,
         message: draftMessage,
       }).then((result) => {
-        setFeedback(result.ok ? "Internal message added." : result.reason);
+        setFeedback(
+          result.ok
+            ? "Internal message added."
+            : result.reason ?? "Unable to add the internal message.",
+        );
         if (result.ok) {
           setDraftMessage("");
         }

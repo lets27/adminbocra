@@ -16,12 +16,13 @@ export function BentoGrid({
   );
 }
 
-interface BentoCardProps extends React.HTMLAttributes<HTMLDivElement> {
+type BentoCardProps = React.PropsWithChildren<{
+  className?: string;
   eyebrow?: string;
   title: string;
   description: string;
   icon?: React.ReactNode;
-}
+}>;
 
 export function BentoCard({
   className,
@@ -30,7 +31,6 @@ export function BentoCard({
   description,
   icon,
   children,
-  ...props
 }: BentoCardProps) {
   return (
     <motion.div
@@ -41,7 +41,6 @@ export function BentoCard({
       initial={false}
       transition={{ duration: 0.2, ease: "easeOut" }}
       whileHover={{ translateY: -4 }}
-      {...props}
     >
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(20,184,166,0.65),transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="flex items-start justify-between gap-4">

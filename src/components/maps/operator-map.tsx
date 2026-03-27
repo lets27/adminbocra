@@ -81,7 +81,7 @@ function addOpenFreeMapBuildingsLayer(map: MapLibreMap) {
 
   const layers = map.getStyle().layers ?? [];
   const labelLayer = layers.find(
-    (layer) =>
+    (layer: { type?: string; layout?: unknown; id?: string }) =>
       layer.type === "symbol" &&
       typeof layer.layout === "object" &&
       layer.layout !== null &&
@@ -310,14 +310,13 @@ export function OperatorMap({
 
         maplibreModuleRef.current = maplibregl;
 
-        const map = new maplibregl.default.Map({
+        const map = new maplibregl.Map({
           container: containerRef.current,
           style: mapStyle,
           center: [initialCenter.longitude, initialCenter.latitude],
           zoom: initialZoom,
           pitch: initialPitch,
           bearing: initialBearing,
-          attributionControl: true,
           canvasContextAttributes: enable3dBuildings
             ? { antialias: true }
             : undefined,
@@ -325,17 +324,17 @@ export function OperatorMap({
 
         mapRef.current = map;
 
-        map.addControl(new maplibregl.default.NavigationControl(), "top-right");
-        map.addControl(new maplibregl.default.ScaleControl(), "bottom-left");
+        map.addControl(new maplibregl.NavigationControl(), "top-right");
+        map.addControl(new maplibregl.ScaleControl(), "bottom-left");
         map.on("load", () => {
           if (enable3dBuildings) {
             addOpenFreeMapBuildingsLayer(map);
           }
           setMapReady(true);
         });
-        map.on("error", (event) => {
+        map.on("error", (event: { error?: { message?: string } }) => {
           if ("error" in event && event.error) {
-            setMapError(event.error.message);
+            setMapError(event.error.message ?? "MapLibre GL reported an error.");
           }
         });
       })
@@ -367,7 +366,7 @@ export function OperatorMap({
 
   useEffect(() => {
     const map = mapRef.current;
-    const maplibregl = maplibreModuleRef.current?.default;
+    const maplibregl = maplibreModuleRef.current;
 
     if (!mapReady || !map || !maplibregl) {
       return;
@@ -416,7 +415,7 @@ export function OperatorMap({
 
   useEffect(() => {
     const map = mapRef.current;
-    const maplibregl = maplibreModuleRef.current?.default;
+    const maplibregl = maplibreModuleRef.current;
 
     if (!mapReady || !map || !maplibregl) {
       return;

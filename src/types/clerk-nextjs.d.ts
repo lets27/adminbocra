@@ -1,6 +1,16 @@
 declare module "@clerk/nextjs" {
   import type { ReactNode } from "react";
 
+  type ClerkEmailAddress = {
+    emailAddress: string | null;
+  };
+
+  type ClerkClientUser = {
+    fullName: string | null;
+    username: string | null;
+    primaryEmailAddress?: ClerkEmailAddress | null;
+  };
+
   export function useAuth(): {
     isLoaded: boolean;
     isSignedIn: boolean | undefined;
@@ -11,6 +21,12 @@ declare module "@clerk/nextjs" {
     orgId: string | null | undefined;
     orgRole: string | null | undefined;
     sessionClaims: Record<string, unknown> | null | undefined;
+  };
+
+  export function useUser(): {
+    isLoaded: boolean;
+    isSignedIn: boolean | undefined;
+    user: ClerkClientUser | null | undefined;
   };
 
   export function ClerkProvider(props: { children: ReactNode }): ReactNode;

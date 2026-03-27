@@ -57,7 +57,7 @@ export function OperatorLicenseStatusControl({
           return;
         }
 
-        setFeedback(result.reason);
+        setFeedback(result.reason ?? "Unable to update the license status.");
       });
     });
   };
