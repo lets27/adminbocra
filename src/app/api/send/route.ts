@@ -112,7 +112,7 @@ function buildComplaintEmailHtml(payload: ComplaintEmailPayload): string {
     .filter(Boolean)
     .join(" ");
 
-  const rows = [
+  const rowCandidates: Array<readonly [string, string | null]> = [
     ["Reference Number", payload.referenceNumber],
     ["Tracking Token", payload.trackingToken],
     ["Operator", payload.operatorName],
@@ -120,9 +120,11 @@ function buildComplaintEmailHtml(payload: ComplaintEmailPayload): string {
     ["Consumer", consumerName],
     ["Consumer Email", normalizeOptionalString(payload.consumerEmail)],
     ["Consumer Phone", normalizeOptionalString(payload.consumerPhone)],
-  ]
-    .flatMap(([label, value]) =>
-      value ? ([[label, value]] as const) : [],
+  ];
+
+  const rows = rowCandidates
+    .flatMap(([label, value]): Array<[string, string]> =>
+      value ? [[label, value]] : [],
     )
     .map(
       ([label, value]) => `
